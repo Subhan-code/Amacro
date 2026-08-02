@@ -24,7 +24,7 @@ export const Navbar: React.FC = () => {
           </a>
         ))}
         <a 
-          href="https://github.com/Subhan-code/Lumina-Transitions-" 
+          href="https://github.com/Subhan-code/Amacro" 
           target="_blank" 
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider hover:text-neutral-400 transition-colors"

@@ -7,12 +7,13 @@ import { CodeDrawer } from './components/CodeDrawer';
 import { ThemeToggle } from './components/ThemeToggle';
 import { GsapOverlay, GsapOverlayRef } from './components/GsapOverlay';
 import { SearchModal } from './components/SearchModal';
+import { Marquee } from './components/Marquee';
 
 const CATEGORIES: TransitionCategory[] = ['Basic', 'Hard', 'Crazy'];
 
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [speedMode, setSpeedMode] = useState<'showcase' | 'optimal'>('showcase');
+  const [speedMode, setSpeedMode] = useState<'showcase' | 'optimal'>('optimal');
   const [activeTransitionId, setActiveTransitionId] = useState<string>('circle');
   const [activeCategory, setActiveCategory] = useState<TransitionCategory>('Basic');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -22,14 +23,11 @@ const App = () => {
   const gsapOverlayRef = useRef<GsapOverlayRef>(null);
 
   useEffect(() => {
-    // Set style attribute to lumina
-    document.documentElement.setAttribute('data-style', 'lumina');
+    // Set style attribute to amacro
+    document.documentElement.setAttribute('data-style', 'amacro');
 
-    // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
-    }
+    // Default to Light Theme initially
+    document.documentElement.classList.remove('dark');
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -44,7 +42,7 @@ const App = () => {
 
   // Update duration CSS property when speed mode changes
   useEffect(() => {
-    const duration = speedMode === 'showcase' ? '1.2s' : '0.5s';
+    const duration = speedMode === 'showcase' ? '0.8s' : '0.4s';
     document.documentElement.style.setProperty('--duration', duration);
   }, [speedMode]);
 
@@ -173,11 +171,10 @@ const App = () => {
       <style>{CSS_VARS}</style>
       <style>{activeCSS}</style>
       
-      {/* Background Blobs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-[-10%] w-[500px] h-[500px] bg-purple-300/20 dark:bg-purple-900/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-blue-300/20 dark:bg-blue-900/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-32 left-[20%] w-[500px] h-[500px] bg-indigo-300/20 dark:bg-indigo-900/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+      {/* Optimized GPU Background Gradient */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-40 dark:opacity-20">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(124,94,184,0.18)_0%,transparent_70%)]"></div>
+        <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(75,42,140,0.18)_0%,transparent_70%)]"></div>
       </div>
       
       <GsapOverlay ref={gsapOverlayRef} />
@@ -190,11 +187,15 @@ const App = () => {
 
       {/* --- SIDEBAR (Left) --- */}
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-20 border-r-2 border-theme-border flex-col justify-between items-center py-8 z-50 bg-theme-bg">
-        {/* Top Logo */}
-        <div className="transform hover:scale-110 transition-transform duration-300 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        {/* Top Logo (Same as Favicon) */}
+        <div 
+          className="transform hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          title="Amacro"
+        >
           <img 
             src="https://github.com/Subhan-code/Luma-Transitions-Page-Reveal-Animations-/blob/main/luma%20Pinterest%20Logo%20.png?raw=true" 
-            alt="Luma Logo" 
+            alt="Amacro Logo" 
             className="w-10 h-10 object-contain"
           />
         </div>
@@ -210,20 +211,21 @@ const App = () => {
         </div>
       </aside>
 
-      {/* --- HEADER --- */}
-      <header className="fixed top-0 left-0 right-0 z-40 md:left-20 bg-theme-bg/90 backdrop-blur-md border-b border-theme-border">
-        <div className="w-full px-6 py-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left: Nav Buttons */}
-          <div className="flex items-center gap-3">
+      {/* --- HEADER (Clean & Sleek Navbar) --- */}
+      <header className="fixed top-4 left-0 right-0 z-40 md:left-20 px-4 sm:px-6 pointer-events-none">
+        <div className="pointer-events-auto max-w-5xl mx-auto rounded-full bg-theme-bg/85 dark:bg-theme-bg/90 backdrop-blur-xl border border-theme-border/60 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] px-4 sm:px-6 py-2 flex items-center justify-between gap-4 transition-all duration-300">
+          
+          {/* Left: Category Filter Pills */}
+          <div className="flex items-center gap-1.5">
             {CATEGORIES.map((cat) => (
               <button 
                 key={cat} 
                 onClick={() => handleCategoryClick(cat)}
                 className={`
-                  px-5 py-1.5 rounded-full border-2 text-sm font-bold uppercase tracking-wider transition-all duration-200
+                  px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 active:scale-95
                   ${activeCategory === cat 
-                    ? 'border-theme-text bg-theme-text text-theme-bg shadow-[4px_4px_0px_0px_var(--c-border)] translate-x-[-2px] translate-y-[-2px]' 
-                    : 'border-theme-border text-theme-subtext hover:border-theme-text hover:text-theme-text'
+                    ? 'bg-theme-text text-theme-bg font-bold shadow-sm' 
+                    : 'text-theme-subtext hover:text-theme-text hover:bg-theme-text/5'
                   }
                 `}
               >
@@ -232,57 +234,68 @@ const App = () => {
             ))}
           </div>
 
-          {/* Center: Status Pill */}
-          <div className="hidden lg:flex items-center px-5 py-2 rounded-full border border-theme-border bg-theme-bg text-theme-text text-sm font-medium shadow-sm">
-            <span className="relative flex h-2.5 w-2.5 mr-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-theme-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-theme-accent"></span>
-            </span>
-            Mode: {speedMode === 'showcase' ? 'Showcase (1.2s)' : 'Optimal (0.5s)'}
-          </div>
-
-          {/* Right: Actions */}
-          <div className="flex items-center gap-4">
-            <a 
-              href="https://github.com/Subhan-code/Lumina-Transitions-" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-theme-border text-xs font-bold uppercase tracking-widest hover:bg-theme-text hover:text-theme-bg transition-colors"
-              title="GitHub Repository"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              <span>GitHub</span>
-            </a>
+          {/* Right: Sleek Action Controls */}
+          <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-theme-border text-xs font-bold uppercase tracking-widest hover:bg-theme-text hover:text-theme-bg transition-colors"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-theme-border/60 text-xs font-medium text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
               title="Search (Cmd+K)"
             >
               <span>Search</span>
-              <span className="px-1.5 py-0.5 rounded bg-theme-text/10 border border-theme-border/50 text-[10px] opacity-70">⌘K</span>
+              <span className="px-1.5 py-0.5 rounded bg-theme-text/10 border border-theme-border/40 text-[10px] font-mono opacity-80">⌘K</span>
             </button>
+
             <button 
               onClick={toggleSpeed} 
-              className="w-32 px-4 py-2 rounded-full border border-theme-border text-xs font-bold uppercase tracking-widest hover:bg-theme-text hover:text-theme-bg transition-colors text-center"
+              className="px-3.5 py-1.5 rounded-full border border-theme-border/60 text-xs font-mono font-medium text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
+              title="Toggle Speed Duration"
             >
-              {speedMode === 'showcase' ? 'Slow Mode' : 'Fast Mode'}
+              <span>{speedMode === 'showcase' ? '0.8s' : '0.4s'}</span>
             </button>
+
+            <a 
+              href="https://github.com/Subhan-code/Amacro" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-theme-border/60 text-xs font-semibold uppercase tracking-wider text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
+              title="GitHub Repository"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              <span>GitHub</span>
+            </a>
+
             <ThemeToggle theme={theme} onToggle={(x, y) => handleTransition(activeTransitionId, x, y)} />
           </div>
+
         </div>
       </header>
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-6 max-w-7xl relative z-10 pt-32">
-        {/* HERO - Marquee */}
-        <div className="relative py-16 select-none overflow-hidden w-full mb-12">
-          <div className="flex items-center whitespace-nowrap animate-marquee">
-            <h1 className="text-[5rem] md:text-[7rem] leading-none lumina-outline-text hover:text-theme-text hover:text-stroke-0 transition-all duration-700 ease-out mx-4">
-              PAGE • TRANSITION • CREATIVE • DEVELOPER • 
+        {/* HERO SECTION - Centered & Minimal */}
+        <div className="relative py-6 mb-8 flex flex-col items-center text-center gap-3 border-b border-theme-border/40 pb-8 mx-auto">
+          <div className="flex flex-col items-center text-center">
+            <span className="text-xs font-mono text-theme-subtext uppercase tracking-[0.2em] mb-2 opacity-80">
+              /// Page Reveal & Animation Playground
+            </span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display text-theme-text mb-3">
+              Amicro <span className="text-theme-subtext font-light">—</span> Micro-transitions
             </h1>
-            <h1 className="text-[5rem] md:text-[7rem] leading-none lumina-outline-text hover:text-theme-text hover:text-stroke-0 transition-all duration-700 ease-out mx-4">
-              PAGE • TRANSITION • CREATIVE • DEVELOPER • 
-            </h1>
+            <p className="text-sm sm:text-base text-theme-subtext font-sans max-w-2xl leading-relaxed text-center opacity-90 font-normal">
+              An interactive, open-source playground demonstrating fluid page transition animations, view reveals, and theme toggles for modern web applications.
+            </p>
+          </div>
+
+          {/* Ticker Banner */}
+          <div className="relative pt-2 w-full select-none">
+            <Marquee duration={20} pauseOnHover fade fadeAmount={10}>
+              <span className="text-xl md:text-2xl leading-none amacro-outline-text hover:text-theme-text transition-all duration-500 ease-out mx-6 whitespace-nowrap">
+                PAGE • TRANSITION • CREATIVE • DEVELOPER •
+              </span>
+              <span className="text-xl md:text-2xl leading-none amacro-outline-text hover:text-theme-text transition-all duration-500 ease-out mx-6 whitespace-nowrap">
+                PAGE • TRANSITION • CREATIVE • DEVELOPER •
+              </span>
+            </Marquee>
           </div>
         </div>
 
@@ -331,10 +344,10 @@ const App = () => {
             <div className="flex items-center gap-4">
               <img 
                 src="https://github.com/Subhan-code/Luma-Transitions-Page-Reveal-Animations-/blob/main/luma%20Pinterest%20Logo%20.png?raw=true" 
-                alt="Luma Logo" 
+                alt="Amacro Logo" 
                 className="w-12 h-12 object-contain"
               />
-              <h2 className="text-4xl font-bold font-display tracking-tighter">Luma Transitions</h2>
+              <h2 className="text-4xl font-bold font-display tracking-tighter">Amacro Transitions</h2>
             </div>
             
             <div className="space-y-2">
@@ -344,7 +357,7 @@ const App = () => {
                   href="https://x.com/SubhanHQ" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="underline decoration-wavy decoration-theme-accent/50 underline-offset-4 hover:text-theme-accent transition-colors"
+                  className="underline underline-offset-4 decoration-2 decoration-theme-text hover:decoration-theme-accent hover:text-theme-accent font-bold transition-all"
                 >
                   Syed Subhan
                 </a>
@@ -359,7 +372,7 @@ const App = () => {
                   href="https://x.com/SubhanHQ" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-theme-text font-bold hover:text-theme-accent transition-colors"
+                  className="underline underline-offset-4 decoration-1 text-theme-text font-bold hover:text-theme-accent transition-all"
                 >
                   Syed Subhan
                 </a>
@@ -372,7 +385,7 @@ const App = () => {
           {/* Right: Actions & Socials */}
           <div className="flex flex-col items-start md:items-end gap-8">
             <a 
-              href="https://github.com/Subhan-code/Lumina-Transitions-" 
+              href="https://github.com/Subhan-code/Amacro" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group flex items-center gap-3 px-8 py-4 rounded-full border-2 border-theme-text bg-theme-text text-theme-bg hover:bg-theme-bg hover:text-theme-text transition-all duration-300 shadow-[4px_4px_0px_0px_var(--c-border)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"

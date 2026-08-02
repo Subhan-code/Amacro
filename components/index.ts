@@ -12,3 +12,4 @@ export * from './SearchModal';
 export * from './ShutterStairsPreloader';
 export * from './SplitStairsPreloader';
 export * from './ThemeToggle';
+export * from './Marquee';

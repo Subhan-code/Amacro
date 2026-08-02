@@ -1,11 +1,11 @@
 <div align="center">
-  <img width="1200" height="475" alt="Lumina Transitions Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  <img width="1200" height="475" alt="Amacro Transitions Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 
-  # 🌟 Lumina Transitions
+  # 🌟 Amacro Transitions
 
   **An open-source showcase & library of modern web page transition effects.**
 
-  [![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red.svg)](https://github.com/Subhan-code/Lumina-Transitions-)
+  [![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red.svg)](https://github.com/Subhan-code/Amacro)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
   [![Vercel Compatible](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel)](https://vercel.com)
   [![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
@@ -15,15 +15,15 @@
 
 ---
 
-## 📖 About Lumina Transitions
+## 📖 About Amacro Transitions
 
-**Lumina Transitions** is an interactive, open-source web application designed to demonstrate high-performance page transition animations and theme reveals for modern web applications. Built with React, TypeScript, Vite, Tailwind CSS, GSAP, and the browser-native **View Transitions API**, Lumina Transitions offers web developers and designers an interactive playground to explore, test, and copy ready-to-use CSS & JavaScript transition snippets for their own projects.
+**Amacro Transitions** is an interactive, open-source web application designed to demonstrate high-performance page transition animations and theme reveals for modern web applications. Built with React, TypeScript, Vite, Tailwind CSS, GSAP, and the browser-native **View Transitions API**, Amacro Transitions offers web developers and designers an interactive playground to explore, test, and copy ready-to-use CSS & JavaScript transition snippets for their own projects.
 
 ---
 
 ## 🌐 Open Source
 
-Lumina Transitions is **100% free and open-source**. Contributions, issues, and feature requests are welcome! Feel free to fork the repository, star the project on GitHub, and adapt these page transition effects for your web applications.
+Amacro Transitions is **100% free and open-source**. Contributions, issues, and feature requests are welcome! Feel free to fork the repository, star the project on GitHub, and adapt these page transition effects for your web applications.
 
 ---
 
@@ -31,7 +31,7 @@ Lumina Transitions is **100% free and open-source**. Contributions, issues, and 
 
 - 🎭 **Curated Transition Collection**: Explore basic, hard, and creative page transition effects (Circle, Ripple, Wave, Curtain, Blur, Glitch, 3D Flip, GSAP overlays, and more).
 - ⚡ **Dual Speed Modes**: Easily toggle between **Showcase Mode (1.2s)** for detailed animation previews and **Optimal Mode (0.5s)** for production speed.
-- 🌓 **Dynamic Theme Engine**: Built-in Lumina design system with seamless Light & Dark theme toggle powered by native View Transitions.
+- 🌓 **Dynamic Theme Engine**: Built-in Amacro design system with seamless Light & Dark theme toggle powered by native View Transitions.
 - 💻 **Interactive Code Drawer**: Instant access to copy CSS keyframes and GSAP animation logic.
 - 🚀 **Vercel Ready**: Pre-configured with `vercel.json` for zero-configuration, lightning-fast deployment on Vercel.
 
@@ -47,8 +47,8 @@ Make sure you have [Node.js](https://nodejs.org/) installed (version 18+ recomme
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Subhan-code/Lumina-Transitions-.git
-   cd lumina-transitions
+   git clone https://github.com/Subhan-code/Amacro.git
+   cd amacro-transitions
    ```
 
 2. **Install dependencies:**

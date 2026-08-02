@@ -32,7 +32,7 @@ export const CSS_VARS = `
 }
 
 :root {
-  --duration: 1.2s; /* Default showcase duration */
+  --duration: 0.4s; /* Default optimal duration */
   --expo-in: linear(
     0 0%, 0.0085 31.26%, 0.0167 40.94%,
     0.0289 48.86%, 0.0471 55.92%,
