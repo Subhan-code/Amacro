@@ -279,7 +279,7 @@ const App = () => {
               /// Page Reveal & Animation Playground
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display text-theme-text mb-3">
-              Amicro <span className="text-theme-subtext font-light">—</span> Micro-transitions
+              Amacro <span className="text-theme-subtext font-light">—</span> Page Transitions
             </h1>
             <p className="text-sm sm:text-base text-theme-subtext font-sans max-w-2xl leading-relaxed text-center opacity-90 font-normal">
               An interactive, open-source playground demonstrating fluid page transition animations, view reveals, and theme toggles for modern web applications.
