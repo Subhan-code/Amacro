@@ -159,6 +159,10 @@
       }
       .dark ::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.2); }
       
+      /* Hide scrollbar for clean mobile scrolling */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
       /* Toggle Styles */
       .toggle {
         display: inline-block;

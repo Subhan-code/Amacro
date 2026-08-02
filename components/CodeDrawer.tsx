@@ -33,25 +33,28 @@ export const CodeDrawer: React.FC<CodeDrawerProps> = ({ isOpen, onClose, title, 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
+    <div className="fixed inset-0 z-50 flex flex-col justify-end md:flex-row md:justify-end">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/20 dark:bg-black/60 backdrop-blur-sm transition-opacity opacity-100" 
+        className="absolute inset-0 bg-black/30 dark:bg-black/70 backdrop-blur-sm transition-opacity opacity-100" 
         onClick={onClose}
       />
       
-      {/* Panel */}
-      <div className="relative w-full max-w-2xl bg-theme-card/90 backdrop-blur-2xl h-full shadow-2xl flex flex-col transform transition-transform duration-300 translate-x-0 border-l border-theme-border">
-        <div className="p-6 border-b border-theme-border flex justify-between items-center">
+      {/* Panel / Bottom Sheet */}
+      <div className="relative w-full max-w-2xl bg-theme-card/95 backdrop-blur-2xl h-[88vh] md:h-full rounded-t-3xl md:rounded-none shadow-2xl flex flex-col border-t md:border-t-0 md:border-l border-theme-border z-10 transition-transform duration-300">
+        {/* Mobile Pull Handle Indicator */}
+        <div className="w-12 h-1.5 bg-theme-subtext/30 rounded-full mx-auto mt-3 mb-1 md:hidden" />
+        
+        <div className="p-4 sm:p-6 border-b border-theme-border flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-bold text-theme-text">{title}</h2>
-            <p className="text-[15px] text-theme-subtext mt-1">Copy and paste into your project.</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-theme-text font-display">{title}</h2>
+            <p className="text-xs sm:text-[15px] text-theme-subtext mt-0.5">Copy and paste into your project.</p>
           </div>
           <button 
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-theme-bg transition-colors text-theme-subtext"
+            className="p-2 rounded-full hover:bg-theme-bg transition-colors text-theme-subtext active:scale-95"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
 

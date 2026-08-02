@@ -212,17 +212,30 @@ const App = () => {
       </aside>
 
       {/* --- HEADER (Clean & Sleek Navbar) --- */}
-      <header className="fixed top-4 left-0 right-0 z-40 md:left-20 px-4 sm:px-6 pointer-events-none">
-        <div className="pointer-events-auto max-w-5xl mx-auto rounded-full bg-theme-bg/85 dark:bg-theme-bg/90 backdrop-blur-xl border border-theme-border/60 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] px-4 sm:px-6 py-2 flex items-center justify-between gap-4 transition-all duration-300">
+      <header className="fixed top-2.5 sm:top-4 left-0 right-0 z-40 md:left-20 px-2.5 sm:px-6 pointer-events-none">
+        <div className="pointer-events-auto max-w-5xl mx-auto rounded-full bg-theme-bg/85 dark:bg-theme-bg/90 backdrop-blur-xl border border-theme-border/60 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] px-3 sm:px-6 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300">
           
-          {/* Left: Category Filter Pills */}
-          <div className="flex items-center gap-1.5">
+          {/* Mobile Logo Brand Badge */}
+          <div 
+            className="flex md:hidden items-center shrink-0 mr-1 cursor-pointer transform active:scale-95 transition-transform" 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            title="Amacro"
+          >
+            <img 
+              src="https://github.com/Subhan-code/Luma-Transitions-Page-Reveal-Animations-/blob/main/luma%20Pinterest%20Logo%20.png?raw=true" 
+              alt="Amacro Logo" 
+              className="w-7 h-7 object-contain"
+            />
+          </div>
+
+          {/* Left/Middle: Category Filter Pills (Scrollable on mobile) */}
+          <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar py-0.5 max-w-[50vw] sm:max-w-none">
             {CATEGORIES.map((cat) => (
               <button 
                 key={cat} 
                 onClick={() => handleCategoryClick(cat)}
                 className={`
-                  px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 active:scale-95
+                  px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-200 active:scale-95 whitespace-nowrap
                   ${activeCategory === cat 
                     ? 'bg-theme-text text-theme-bg font-bold shadow-sm' 
                     : 'text-theme-subtext hover:text-theme-text hover:bg-theme-text/5'
@@ -235,19 +248,20 @@ const App = () => {
           </div>
 
           {/* Right: Sleek Action Controls */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-theme-border/60 text-xs font-medium text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-theme-border/60 text-[11px] sm:text-xs font-medium text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
               title="Search (Cmd+K)"
             >
-              <span>Search</span>
-              <span className="px-1.5 py-0.5 rounded bg-theme-text/10 border border-theme-border/40 text-[10px] font-mono opacity-80">⌘K</span>
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+              <span className="hidden sm:inline">Search</span>
+              <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-theme-text/10 border border-theme-border/40 text-[10px] font-mono opacity-80">⌘K</span>
             </button>
 
             <button 
               onClick={toggleSpeed} 
-              className="px-3.5 py-1.5 rounded-full border border-theme-border/60 text-xs font-mono font-medium text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
+              className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-theme-border/60 text-[11px] sm:text-xs font-mono font-medium text-theme-text hover:bg-theme-text hover:text-theme-bg transition-all duration-200 active:scale-95"
               title="Toggle Speed Duration"
             >
               <span>{speedMode === 'showcase' ? '0.8s' : '0.4s'}</span>
@@ -271,28 +285,38 @@ const App = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-6 max-w-7xl relative z-10 pt-32">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 max-w-7xl relative z-10 pt-24 sm:pt-32">
         {/* HERO SECTION - Centered & Minimal */}
-        <div className="relative py-6 mb-8 flex flex-col items-center text-center gap-3 border-b border-theme-border/40 pb-8 mx-auto">
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xs font-mono text-theme-subtext uppercase tracking-[0.2em] mb-2 opacity-80">
-              /// Page Reveal & Animation Playground
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display text-theme-text mb-3">
+        <div className="relative py-4 sm:py-6 mb-8 flex flex-col items-center text-center gap-3 border-b border-theme-border/40 pb-8 mx-auto">
+          {/* Subtle Ambient Glow */}
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-theme-accent/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex flex-col items-center text-center relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-theme-text/5 border border-theme-border/40 text-[10px] sm:text-xs font-mono text-theme-subtext uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-2 opacity-90">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>/// Page Reveal & Animation Playground</span>
+            </div>
+            <h1 className="text-2xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display text-theme-text mb-3 leading-snug">
               Amacro <span className="text-theme-subtext font-light">—</span> Page Transitions
             </h1>
-            <p className="text-sm sm:text-base text-theme-subtext font-sans max-w-2xl leading-relaxed text-center opacity-90 font-normal">
+            <p className="text-xs sm:text-base text-theme-subtext font-sans max-w-2xl leading-relaxed text-center opacity-90 font-normal px-2">
               An interactive, open-source playground demonstrating fluid page transition animations, view reveals, and theme toggles for modern web applications.
             </p>
+
+            {/* Mobile Interaction Hint */}
+            <div className="flex md:hidden items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-theme-text/5 border border-theme-border/30 text-[11px] font-sans text-theme-subtext">
+              <svg className="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+              <span>Tap any card to trigger live view transition</span>
+            </div>
           </div>
 
           {/* Ticker Banner */}
           <div className="relative pt-2 w-full select-none">
             <Marquee duration={20} pauseOnHover fade fadeAmount={10}>
-              <span className="text-xl md:text-2xl leading-none amacro-outline-text hover:text-theme-text transition-all duration-500 ease-out mx-6 whitespace-nowrap">
+              <span className="text-lg sm:text-xl md:text-2xl leading-none amacro-outline-text hover:text-theme-text transition-all duration-500 ease-out mx-4 sm:mx-6 whitespace-nowrap">
                 PAGE • TRANSITION • CREATIVE • DEVELOPER •
               </span>
-              <span className="text-xl md:text-2xl leading-none amacro-outline-text hover:text-theme-text transition-all duration-500 ease-out mx-6 whitespace-nowrap">
+              <span className="text-lg sm:text-xl md:text-2xl leading-none amacro-outline-text hover:text-theme-text transition-all duration-500 ease-out mx-4 sm:mx-6 whitespace-nowrap">
                 PAGE • TRANSITION • CREATIVE • DEVELOPER •
               </span>
             </Marquee>
@@ -300,19 +324,19 @@ const App = () => {
         </div>
 
         {/* CONTENT - List Sections */}
-        <div className="space-y-24 mb-32">
+        <div className="space-y-16 sm:space-y-24 mb-24 sm:mb-32">
           {CATEGORIES.map((category) => (
-            <div key={category} id={category} className="scroll-mt-32">
-              <div className="flex items-end gap-4 mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold text-theme-text tracking-tight font-bubble">
+            <div key={category} id={category} className="scroll-mt-28 sm:scroll-mt-32">
+              <div className="flex items-end gap-3 sm:gap-4 mb-5 sm:mb-8">
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-theme-text tracking-tight font-bubble">
                   {category}
                 </h2>
-                <span className="text-sm font-mono text-theme-subtext mb-2 uppercase tracking-widest">
+                <span className="text-xs sm:text-sm font-mono text-theme-subtext mb-1 sm:mb-2 uppercase tracking-widest opacity-80">
                   /// Selected Works
                 </span>
               </div>
               
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2.5 sm:gap-3">
                 {transitionsByCategory[category]?.map((item, index) => (
                   <DemoCard 
                     key={item.id}
