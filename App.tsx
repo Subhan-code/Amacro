@@ -22,8 +22,8 @@ const App = () => {
   const gsapOverlayRef = useRef<GsapOverlayRef>(null);
 
   useEffect(() => {
-    // Set style attribute to igma
-    document.documentElement.setAttribute('data-style', 'igma');
+    // Set style attribute to lumina
+    document.documentElement.setAttribute('data-style', 'lumina');
 
     // Check system preference
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -188,7 +188,7 @@ const App = () => {
         onSelect={handleSearchSelect} 
       />
 
-      {/* --- IGMA SIDEBAR (Left) --- */}
+      {/* --- SIDEBAR (Left) --- */}
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-20 border-r-2 border-theme-border flex-col justify-between items-center py-8 z-50 bg-theme-bg">
         {/* Top Logo */}
         <div className="transform hover:scale-110 transition-transform duration-300 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -210,7 +210,7 @@ const App = () => {
         </div>
       </aside>
 
-      {/* --- IGMA HEADER --- */}
+      {/* --- HEADER --- */}
       <header className="fixed top-0 left-0 right-0 z-40 md:left-20 bg-theme-bg/90 backdrop-blur-md border-b border-theme-border">
         <div className="w-full px-6 py-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: Nav Buttons */}
@@ -239,7 +239,6 @@ const App = () => {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-theme-accent"></span>
             </span>
             Mode: {speedMode === 'showcase' ? 'Showcase (1.2s)' : 'Optimal (0.5s)'}
-            <span className="ml-2 font-serif italic opacity-70">→ Igma Theme</span>
           </div>
 
           {/* Right: Actions */}
@@ -275,19 +274,19 @@ const App = () => {
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-6 max-w-7xl relative z-10 pt-32">
-        {/* IGMA HERO - Marquee */}
+        {/* HERO - Marquee */}
         <div className="relative py-16 select-none overflow-hidden w-full mb-12">
           <div className="flex items-center whitespace-nowrap animate-marquee">
-            <h1 className="text-[5rem] md:text-[7rem] leading-none igma-outline-text hover:text-theme-text hover:text-stroke-0 transition-all duration-700 ease-out mx-4">
+            <h1 className="text-[5rem] md:text-[7rem] leading-none lumina-outline-text hover:text-theme-text hover:text-stroke-0 transition-all duration-700 ease-out mx-4">
               PAGE • TRANSITION • CREATIVE • DEVELOPER • 
             </h1>
-            <h1 className="text-[5rem] md:text-[7rem] leading-none igma-outline-text hover:text-theme-text hover:text-stroke-0 transition-all duration-700 ease-out mx-4">
+            <h1 className="text-[5rem] md:text-[7rem] leading-none lumina-outline-text hover:text-theme-text hover:text-stroke-0 transition-all duration-700 ease-out mx-4">
               PAGE • TRANSITION • CREATIVE • DEVELOPER • 
             </h1>
           </div>
         </div>
 
-        {/* CONTENT - Igma List Sections */}
+        {/* CONTENT - List Sections */}
         <div className="space-y-24 mb-32">
           {CATEGORIES.map((category) => (
             <div key={category} id={category} className="scroll-mt-32">
@@ -324,7 +323,7 @@ const App = () => {
         css={drawerContent.css} 
       />
       
-      {/* IGMA FOOTER */}
+      {/* FOOTER */}
       <footer className="relative z-10 border-t-2 border-theme-border bg-theme-bg md:pl-20 text-theme-text">
         <div className="container mx-auto px-6 max-w-7xl py-16 flex flex-col md:flex-row justify-between items-start gap-12">
           {/* Left: Branding */}
@@ -339,12 +338,32 @@ const App = () => {
             </div>
             
             <div className="space-y-2">
-              <p className="text-xl font-medium">Designed & Engineered by <span className="underline decoration-wavy decoration-theme-accent/50 underline-offset-4">Syed Subhan</span></p>
+              <p className="text-xl font-medium">
+                Designed & Engineered by{' '}
+                <a 
+                  href="https://x.com/SubhanHQ" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="underline decoration-wavy decoration-theme-accent/50 underline-offset-4 hover:text-theme-accent transition-colors"
+                >
+                  Syed Subhan
+                </a>
+              </p>
               <p className="text-theme-subtext italic">"Simplicity is the ultimate sophistication."</p>
             </div>
             
             <div className="mt-4 flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-widest opacity-80">
-              <span>Created by <strong className="text-theme-text font-bold">Syed Subhan</strong></span>
+              <span>
+                Created by{' '}
+                <a 
+                  href="https://x.com/SubhanHQ" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-theme-text font-bold hover:text-theme-accent transition-colors"
+                >
+                  Syed Subhan
+                </a>
+              </span>
               <span>·</span>
               <span>Terms & License</span>
             </div>

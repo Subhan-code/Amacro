@@ -31,7 +31,7 @@ Lumina Transitions is **100% free and open-source**. Contributions, issues, and 
 
 - 🎭 **Curated Transition Collection**: Explore basic, hard, and creative page transition effects (Circle, Ripple, Wave, Curtain, Blur, Glitch, 3D Flip, GSAP overlays, and more).
 - ⚡ **Dual Speed Modes**: Easily toggle between **Showcase Mode (1.2s)** for detailed animation previews and **Optimal Mode (0.5s)** for production speed.
-- 🌓 **Dynamic Theme Engine**: Built-in Igma design system with seamless Light & Dark theme toggle powered by native View Transitions.
+- 🌓 **Dynamic Theme Engine**: Built-in Lumina design system with seamless Light & Dark theme toggle powered by native View Transitions.
 - 💻 **Interactive Code Drawer**: Instant access to copy CSS keyframes and GSAP animation logic.
 - 🚀 **Vercel Ready**: Pre-configured with `vercel.json` for zero-configuration, lightning-fast deployment on Vercel.
 
@@ -83,5 +83,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 <div align="center">
-  Crafted with ❤️ by <strong>Syed Subhan</strong>
+  Crafted with ❤️ by <a href="https://x.com/SubhanHQ" target="_blank" rel="noopener noreferrer"><strong>Syed Subhan</strong></a>
 </div>
